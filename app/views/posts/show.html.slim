@@ -6,6 +6,9 @@
       = Post.human_attribute_name(:title)
     = @post.title
   p
+    strong category
+    = Category.find(@post.category_id).name
+  p
     strong
       = Post.human_attribute_name(:content)
     = @post.content
