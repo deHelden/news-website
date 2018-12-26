@@ -30,4 +30,46 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      post:
+        title: Title
+        content: Content
+        description: Description
+        visibility: Visibility
+        status: Status
+        importance: Importance
+        rating: Rating
+        publisheddate: Published
+        createdat: Created
+        comments: Comments
+    model:
+        email: Email@
+        first_name: First@Name
+        last_name: Last@Name
+    comment:
+      addcomment: Add Comment
+      commenter: Commenter
+      body: Comment
+      creationdate: Creation date
+  notice:
+    create: Post succesfully created!
+    update: Post succesfully updated.
+    destroy: Post succesfully deleted.
+    confirm: Are you sure?
+  date:
+    order:
+      - :day
+      - :month
+      - :year
+    formats:
+      default: "%m/%d/%Y"
+      short: "%m/%d"
+  action:
+    create: New Post
+    show: Show
+    edit: Edit
+    destroy: Destroy
+    back: Back
+  greetings: Hello guest!
+  posts: Posts
