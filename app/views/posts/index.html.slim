@@ -48,10 +48,4 @@ table
         td
           = link_to t('action.destroy'), post, method: :delete, data: { confirm: t('notice.confirm') }
 br
-= content_tag :li do
-  = link_to 'English', locale: :en
-  - unless current_page?(locale: :en)
-= content_tag :li do
-  = link_to 'Русский', locale: :ru
-  - unless current_page?(locale: :ru)
 = link_to t('action.create'), new_post_path

@@ -34,9 +34,3 @@
     = form.text_field :rating, id: :post_rating
   .actions
     = form.submit
-  = content_tag :li do
-    = link_to 'English', locale: :en
-  - unless current_page?(locale: :en)
-  = content_tag :li do
-    = link_to 'Русский', locale: :ru
-  - unless current_page?(locale: :ru)
