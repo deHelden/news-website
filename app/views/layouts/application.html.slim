@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title
+      | NewsWebsite
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    = content_tag :li do
+      = link_to 'English', locale: :en
+      - unless current_page?(locale: :en)
+    = content_tag :li do
+      = link_to 'Русский', locale: :ru
+      - unless current_page?(locale: :ru)
+    = yield

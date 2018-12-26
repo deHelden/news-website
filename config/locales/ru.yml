@@ -1,0 +1,44 @@
+ru:
+  activerecord:
+    attributes:
+      post:
+        title: Заголовок
+        content: Содержание
+        description: Описание
+        visibility: Видимость
+        status: Статус
+        importance: Важно
+        rating: Оценка
+        publisheddate: Дата публикации
+        createdat: Дата создания
+        comments: Комментарии
+      comment:
+        addcomment: Добавь комментарии
+        commenter: Комментатор
+        body: Комментарий
+        creationdate: Дата Создания
+    model:
+      email: Email@
+      first_name: Имя
+      last_name: Фамилия
+  notice:
+    create: Статья успешно создана!
+    update: Статья успешно изменена.
+    destroy: Статья успешно удалена.
+    confirm: Вы уверены?
+  date:
+    order:
+      - :day
+      - :month
+      - :year
+    formats:
+      default: "%m/%d/%Y"
+      short: "%m/%d"
+  action:
+    create: Создать
+    show: Посмотреть
+    edit: Редактировать
+    destroy: Удалить
+    back: Назад
+  posts: Статьи
+  greetings: Приветствуем!

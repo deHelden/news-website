@@ -1,0 +1,40 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id             :bigint(8)        not null, primary key
+#  title          :string           not null
+#  content        :string           not null
+#  description    :string           not null
+#  visibility     :text
+#  published_date :datetime
+#  status         :string           not null
+#  importance     :boolean
+#  rating         :float
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  title: MyString
+  content: MyText
+  description: MyText
+  visibility: MyText
+  published_date: 2018-12-25 17:22:23
+  status: MyText
+  importance: false
+  rating: 1.5
+
+two:
+  name: MyString
+  title: MyString
+  content: MyText
+  description: MyText
+  visibility: MyText
+  published_date: 2018-12-25 17:22:23
+  status: MyText
+  importance: false
+  rating: 1.5

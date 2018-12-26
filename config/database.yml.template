@@ -9,15 +9,15 @@ default: &default
 
 development:
   <<: *default
-  database: News-Website_development
+  database: database_development_name
 
 test:
   <<: *default
-  database: News-Website_test
+  database: database_test_name
 
 
 production:
   <<: *default
-  database: News-Website_production
-  username: kioshi
+  database: database_production_name
+  username: username
   password: <%= ENV['NEWS-WEBSITE_DATABASE_PASSWORD'] %>
