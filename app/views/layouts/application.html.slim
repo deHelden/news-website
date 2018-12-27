@@ -13,4 +13,10 @@ html
     = content_tag :li do
       = link_to 'Русский', locale: :ru
       - unless current_page?(locale: :ru)
+    = link_to 'Sign_up', new_user_registration_path
+    = link_to 'Sign_in', new_user_session_path
+    p.alert
+      = alert
+    p.notice
+      = notice
     = yield

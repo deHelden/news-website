@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /posts
   def index
     @posts = Post.all
-    @category = Category.all.group_by(&:id)
+    @categories = Category.all.group_by(&:id)
   end
 
   # GET /posts/1
@@ -12,7 +13,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.new
+    @post = current_user.posts.build
   end
 
   # GET /posts/1/edit
@@ -20,7 +21,7 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
 
     respond_to do |format|
       if @post.save

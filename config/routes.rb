@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users
+  root to: "posts#index"
   scope '(:locale)', locale: /#{I18n.available_locales.join("|")}/ do
     resources :posts do
       resources :comments

@@ -41,8 +41,9 @@ table
           = post.rating
         td
           = link_to t('action.show'), post
-        td
-          = link_to t('action.edit'), edit_post_path(post)
-        td
-          = link_to t('action.destroy'), post, method: :delete, data: { confirm: t('notice.confirm') }
+        - if user_signed_in?
+          td
+            = link_to t('action.edit'), edit_post_path(post)
+          td
+            = link_to t('action.destroy'), post, method: :delete, data: { confirm: t('notice.confirm') }
 br
