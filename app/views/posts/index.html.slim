@@ -7,4 +7,6 @@ p#notice
 br
 = render 'news_categories', post: @post
 br
+= render 'latest_news', post: @post
+br
 = link_to t('action.create'), new_post_path

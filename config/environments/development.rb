@@ -47,4 +47,6 @@ Rails.application.configure do
     Bullet.unused_eager_loading_enable = true
     Bullet.counter_cache_enable        = true
   end
+
+  config.console = Pry
 end
