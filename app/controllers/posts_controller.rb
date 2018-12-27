@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   # GET /posts
   def index
     @posts = Post.all
+    @category = Category.all.group_by(&:id)
   end
 
   # GET /posts/1
@@ -54,10 +55,11 @@ class PostsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.find(params[:id])
+    @categories = Category.all
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
-    params.require(:post).permit(:name, :title, :content, :description, :visibility, :published_date, :status, :importance, :rating)
+    params.require(:post).permit(:name, :title, :content, :description, :visibility, :published_date, :status, :importance, :rating, :category_id)
   end
 end

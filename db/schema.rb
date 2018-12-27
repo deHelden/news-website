@@ -10,31 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_181_226_123_132) do
+ActiveRecord::Schema.define(version: 20181226154348) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'comments', force: :cascade do |t|
-    t.string 'commenter', null: false
-    t.string 'body', null: false
-    t.bigint 'post_id'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['post_id'], name: 'index_comments_on_post_id'
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'posts', force: :cascade do |t|
-    t.string 'title', null: false
-    t.string 'content', null: false
-    t.string 'description', null: false
-    t.text 'visibility'
-    t.datetime 'published_date'
-    t.string 'status', null: false
-    t.boolean 'importance'
-    t.float 'rating'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "comments", force: :cascade do |t|
+    t.string "commenter", null: false
+    t.string "body", null: false
+    t.bigint "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
   end
 
-  add_foreign_key 'comments', 'posts'
+  create_table "posts", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "content", null: false
+    t.string "description", null: false
+    t.text "visibility"
+    t.datetime "published_date"
+    t.string "status", null: false
+    t.boolean "importance"
+    t.float "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_posts_on_category_id"
+  end
+
+  add_foreign_key "comments", "posts"
+  add_foreign_key "posts", "categories"
 end

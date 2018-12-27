@@ -1,0 +1,24 @@
+h3 News by categories
+
+div.container
+  div.row Sport
+  - @category.each do |id, category|
+    - @posts.each do |post|
+      - if (id == 1 && id == post.category_id)
+        div.row
+          = post.title
+          = post.description
+  div.row Business
+  - @category.each do |id, category|
+    - @posts.each do |post|
+      - if (id == 2 && id == post.category_id)
+        div.row
+          = post.title
+          = post.description
+  div.row Travell
+  - @category.each do |id, category|
+    - @posts.each do |post|
+      - if (id == 3 && id == post.category_id)
+        div.row
+          = post.title
+          = post.description

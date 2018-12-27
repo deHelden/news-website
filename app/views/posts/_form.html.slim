@@ -12,6 +12,9 @@
     = form.label :title
     = form.text_field :title, id: :post_title
   .field
+    = form.label :category_id
+    = form.select :category_id, options_from_collection_for_select(Category.all, 'id', 'name'), id: :category
+  .field
     = form.label :content
     = form.text_area :content, id: :post_content
   .field
