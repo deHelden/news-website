@@ -22,7 +22,10 @@
     = form.text_area :description, id: :post_description
   .field
     = form.label :visibility
-    = form.text_area :visibility, id: :post_visibility
+    - if current_user.admin? || current_user.publisher?
+      = form.select :visibility_id, options_from_collection_for_select(Visibility.all, 'id', 'name'), id: :post_visibility
+    - else
+      = form.select :visibility_id, options_from_collection_for_select(Visibility.where(name: "Hidden"), 'id', 'name'), id: :post_visibility
   .field
     = form.label :published_date
     = form.datetime_select :published_date, format: :default, id: :post_published_date
@@ -37,9 +40,3 @@
     = form.text_field :rating, id: :post_rating
   .actions
     = form.submit
-  = content_tag :li do
-    = link_to 'English', locale: :en
-  - unless current_page?(locale: :en)
-  = content_tag :li do
-    = link_to 'Русский', locale: :ru
-  - unless current_page?(locale: :ru)

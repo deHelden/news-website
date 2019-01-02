@@ -1,0 +1,9 @@
+h3 Latest
+table
+  thead
+    = render 'posts/main_page/table_head', post: @post
+  tbody
+    - @posts.each do |post|
+      - if post.published_date.to_date == DateTime.now.to_date
+        - unless post.visibility_id == 5
+          = render 'posts/main_page/table_body', post: post

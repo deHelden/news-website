@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'bootstrap', '~> 4.1.3'
-gem 'cancan', '~> 1.6.10'
+gem 'cancancan', '~> 2.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise', '~> 4.5.0'
 gem 'jbuilder', '~> 2.5'
@@ -19,6 +19,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'simple_form', '~> 4.0.1'
 gem 'slim', '~> 4.0.1'
 gem 'slim-rails', '~> 3.2.0'
+gem 'html2slim', '~> 0.2.0'
 gem 'pry', '~> 0.11.3'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'

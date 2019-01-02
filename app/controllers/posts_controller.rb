@@ -1,11 +1,13 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_post, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: [:index, :show]
 
   # GET /posts
   def index
     @posts = Post.all
-    @categories = Category.all.group_by(&:id)
+    @categories = Category.all
+    @visibilities = Visibility.all
   end
 
   # GET /posts/1
@@ -61,6 +63,6 @@ class PostsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
-    params.require(:post).permit(:name, :title, :content, :description, :visibility, :published_date, :status, :importance, :rating, :category_id)
+    params.require(:post).permit(:name, :title, :content, :description, :published_date, :status, :importance, :rating, :category_id, :visibility_id)
   end
 end

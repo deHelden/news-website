@@ -1,0 +1,22 @@
+tr
+  td
+    = post.title
+  td
+    = post.description
+  td
+    = post.published_date
+  td
+    = post.status
+  td
+    = post.importance
+  td
+    = post.rating
+  td
+    - if can? :read, post
+      = link_to t('action.show'), post
+  - if can? :manage, post
+    td
+      = link_to t('action.edit'), edit_post_path(post)
+    td
+      = link_to t('action.destroy'), post, method: :delete, data: { confirm: t('notice.confirm') }
+  br

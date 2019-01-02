@@ -6,7 +6,6 @@
 #  title          :string           not null
 #  content        :string           not null
 #  description    :string           not null
-#  visibility     :text
 #  published_date :datetime
 #  status         :string           not null
 #  importance     :boolean
@@ -14,6 +13,8 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  category_id    :bigint(8)
+#  user_id        :integer
+#  visibility_id  :bigint(8)
 #
 
 class Post < ApplicationRecord
@@ -21,4 +22,5 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   validates :title, presence: true,
                     length: { minimum: 5 }
+  validates :visibility_id, presence: true
 end
