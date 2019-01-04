@@ -1,3 +1,6 @@
+- if ((user_signed_in?))
+  - if can? :create, Post
+    = link_to t('action.create'), new_post_path
 = render 'posts/main_page/all_news', post: @post
 
 = render 'posts/main_page/important_news', post: @post

@@ -5,5 +5,5 @@ table
   tbody
     - @posts.each do |post|
       - if post.published_date.to_date == DateTime.now.to_date
-        - unless post.visibility_id == 5
+        - unless post.visibility_id == @visibilities.last.id
           = render 'posts/main_page/table_body', post: post

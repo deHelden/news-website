@@ -10,9 +10,9 @@
 #  remember_created_at    :datetime
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  admin                  :boolean          default(FALSE)
-#  publisher              :boolean          default(FALSE)
-#  correspondent          :boolean          default(FALSE)
+#  admin                  :boolean          default(FALSE), not null
+#  publisher              :boolean          default(FALSE), not null
+#  correspondent          :boolean          default(FALSE), not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

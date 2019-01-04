@@ -13,7 +13,7 @@
     = form.text_field :title, id: :post_title
   .field
     = form.label :category_id
-    = form.select :category_id, options_from_collection_for_select(Category.all, 'id', 'name'), id: :category
+    = form.select :category_id, options_from_collection_for_select(@categories, 'id', 'name'), id: :category
   .field
     = form.label :content
     = form.text_area :content, id: :post_content
@@ -22,8 +22,8 @@
     = form.text_area :description, id: :post_description
   .field
     = form.label :visibility
-    - if current_user.admin? || current_user.publisher?
-      = form.select :visibility_id, options_from_collection_for_select(Visibility.all, 'id', 'name'), id: :post_visibility
+    - if @responsiblie
+      = form.select :visibility_id, options_from_collection_for_select(@visibilities, 'id', 'name'), id: :post_visibility
     - else
       = form.select :visibility_id, options_from_collection_for_select(Visibility.where(name: "Hidden"), 'id', 'name'), id: :post_visibility
   .field

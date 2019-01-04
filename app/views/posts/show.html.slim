@@ -17,7 +17,7 @@
     = @post.description
   p
     strong Visibility
-    = Visibility.find(@post.visibility_id).name
+    = @post.visibility.name
   p
     strong
       = Post.human_attribute_name(:status)

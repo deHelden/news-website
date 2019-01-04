@@ -8,7 +8,7 @@
 #  description    :string           not null
 #  published_date :datetime
 #  status         :string           not null
-#  importance     :boolean
+#  importance     :boolean          default(FALSE), not null
 #  rating         :float
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null

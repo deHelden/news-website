@@ -5,7 +5,7 @@ div.container
     div.rows
       = category.name
       - @posts.each do |post|
-        - if (post.category_id == category.id && post.visibility_id != 5)
+        - if (post.category_id == category.id && post.visibility_id != @visibilities.last.id)
           div.row
             = link_to post.title, post
             = post.description

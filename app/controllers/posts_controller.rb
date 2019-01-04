@@ -8,6 +8,7 @@ class PostsController < ApplicationController
     @posts = Post.all
     @categories = Category.all
     @visibilities = Visibility.all
+    @visibility_hidden = Visibility.last
   end
 
   # GET /posts/1
@@ -16,6 +17,9 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = current_user.posts.build
+    @categories = Category.all
+    @visibilities = Visibility.all
+    @visibility_hidden = Visibility.where(name: "Hidden")
   end
 
   # GET /posts/1/edit
@@ -58,7 +62,6 @@ class PostsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.find(params[:id])
-    @categories = Category.all
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

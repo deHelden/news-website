@@ -8,7 +8,7 @@
 #  description    :string           not null
 #  published_date :datetime
 #  status         :string           not null
-#  importance     :boolean
+#  importance     :boolean          default(FALSE), not null
 #  rating         :float
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
@@ -19,6 +19,8 @@
 
 class Post < ApplicationRecord
   belongs_to :user
+  belongs_to :visibility
+  belongs_to :category
   has_many :comments, dependent: :destroy
   validates :title, presence: true,
                     length: { minimum: 5 }
