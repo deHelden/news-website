@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   load_and_authorize_resource
   before_action :set_post, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: [:index, :show]
+  impressionist :actions=>[:show]
 
   # GET /posts
   def index
@@ -12,7 +13,9 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1
-  def show; end
+  def show
+    impressionist(@post)
+  end
 
   # GET /posts/new
   def new
@@ -23,7 +26,11 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1/edit
-  def edit; end
+  def edit
+    @categories = Category.all
+    @visibilities = Visibility.all
+    @visibility_hidden = Visibility.where(name: "Hidden")
+  end
 
   # POST /posts
   def create

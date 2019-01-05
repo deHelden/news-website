@@ -51,4 +51,6 @@ Rails.application.configure do
   config.console = Pry
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.asset_host = '192.168.0.28:3000'
+
 end

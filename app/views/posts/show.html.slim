@@ -5,7 +5,10 @@
       = Post.human_attribute_name(:title)
     = @post.title
   p
-    strong category
+    strong Wathed 
+    = @post.impressionist_count(:filter=>:ip_address)
+  p
+    strong Category
     = Category.find(@post.category_id).name
   p
     strong

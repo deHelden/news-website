@@ -22,6 +22,7 @@ class Post < ApplicationRecord
   belongs_to :visibility
   belongs_to :category
   has_many :comments, dependent: :destroy
+  is_impressionable
   validates :title, presence: true,
                     length: { minimum: 5 }
   validates :visibility_id, presence: true
