@@ -1,52 +1,35 @@
-.container
-
-  p
-    strong
-      = Post.human_attribute_name(:title)
-    = @post.title
-  p
-    strong Wathed 
-    = @post.impressionist_count(:filter=>:ip_address)
-  p
-    strong Category
-    = Category.find(@post.category_id).name
-  p
-    strong
-      = Post.human_attribute_name(:content)
-    = @post.content
-  p
-    strong
-      = Post.human_attribute_name(:description)
-    = @post.description
-  p
-    strong Visibility
-    = @post.visibility.name
-  p
-    strong
-      = Post.human_attribute_name(:status)
-    = @post.status
-  p
-    strong
-      = Post.human_attribute_name(:importance)
-    = @post.importance
-  p
-    strong
-      = Post.human_attribute_name(:rating)
-    = @post.rating
-  p
-    strong
-      = Post.human_attribute_name(:publisheddate)
-    = @post.published_date
-  p
-    strong
-      = Post.human_attribute_name(:createdat)
-    = @post.created_at
-  h2
-    = Post.human_attribute_name(:comments)
+div.container
+  div.jumbotron
+    h1
+      = @post.title
+    span.badge.badge-primary
+      | Last update :
+      = @post.created_at.strftime("%b %d, %Y")
+  div.container
+    div.card
+      div.card-body
+        p
+          = simple_format(@post.content)
+      div.card-footer.d-flex.justify-content-end
+        span.badge.badge-primary.col-md-2
+          | Author  :
+          = @post.user.email
+        span.badge.badge-secondary.col-md-1
+          | Viewed :
+          = @post.impressionist_count(:filter=>:ip_address)
+        span.badge.badge-secondary.col-md-1
+          = Post.human_attribute_name(:rating)
+          | :
+          = @post.rating
+        span.badge.badge-secondary.col-md-3
+          | Published :
+          = @post.published_date
   = render @post.comments
-  h2
-    =Comment.human_attribute_name(:addcomment)
-  = render 'comments/form'
+  - if user_signed_in?
+    div.container
+      div.card
+        div.card-body
+          = render 'comments/form'
   |
   = link_to t('action.back'), posts_path
   - if user_signed_in?

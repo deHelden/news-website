@@ -14,3 +14,10 @@
  *= require_self
  */
  @import 'bootstrap';
+ body{
+   background: url('/assets/bg.jpg.jpg');
+    background-image: image-url('bg.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+ }

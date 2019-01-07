@@ -1,8 +1,8 @@
 h3 Important
-table
+table.table.table-light.table-striped
   = render 'posts/main_page/table_head', post: @post
   tbody
-    - @posts.each do |post|
+    - @posts.published.each do |post|
       - unless post.visibility_id == @visibilities.last.id
         - if post.importance?
           = render 'posts/main_page/table_body', post: post

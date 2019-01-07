@@ -22,9 +22,12 @@ gem 'slim-rails', '~> 3.2.0'
 gem 'html2slim', '~> 0.2.0'
 gem 'pry', '~> 0.11.3'
 gem 'impressionist', '~> 1.6.1'
+gem 'aasm', '~> 5.0.1'
+gem 'devise-bootstrap-views', '~> 1.1.0'
+gem 'activeadmin', '~> 1.4.3'
+gem 'kaminari', '~> 1.1.1'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
-gem 'will_paginate', '~> 3.1.0'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capybara', '~> 2.13'

@@ -7,19 +7,10 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    = content_tag :li do
-      = link_to 'English', locale: :en
-      - unless current_page?(locale: :en)
-    = content_tag :li do
-      = link_to 'Русский', locale: :ru
-      - unless current_page?(locale: :ru)
-    - unless user_signed_in?
-      = link_to 'Sign_up', new_user_registration_path
-      = link_to 'Sign_in', new_user_session_path
-    - else
-      = link_to 'Sign_out', destroy_user_session_path, :method => :delete
-    p.alert
-      = alert
-    p.notice
-      = notice
-    = yield
+    = render "layouts/nav_bar"
+    div#main.container
+      p.alert
+        = alert
+      p.notice
+        = notice
+      = yield
