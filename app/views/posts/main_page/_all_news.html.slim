@@ -1,0 +1,7 @@
+h1
+  =t 'posts'
+table.table.table-light.table-striped
+  = render 'posts/main_page/table_head', post: @post
+  tbody
+    - @posts.each do |post|
+      = render 'posts/main_page/table_body', post: post

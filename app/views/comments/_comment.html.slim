@@ -1,12 +1,8 @@
-p
-  strong
-    = Comment.human_attribute_name(:commenter)
-  = comment.commenter
-p
-  strong
-    = Comment.human_attribute_name(:body)
-  = comment.body
-p
-  strong
-    = Comment.human_attribute_name(:creationdate)
-  = comment.created_at
+div.container
+  div.card
+    div.card-body
+      p
+        = comment.body
+    div.card-footer.d-flex.justify-content-end
+      |By :
+      = comment.user.email
