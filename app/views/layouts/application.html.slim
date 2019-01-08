@@ -6,6 +6,7 @@ html
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = auto_discovery_link_tag :rss, posts_path(:format => :rss)
   body
     = render "layouts/nav_bar"
     div#main.container

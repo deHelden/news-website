@@ -13,6 +13,9 @@ nav.navbar.navbar-light.bg-light
 
     div style=("padding-left: 10px;")
     button.btn.btn-outline type="button"
+      = link_to 'Canal RSS', '/posts/feed.rss'
+    div style=("padding-left: 10px;")
+    button.btn.btn-outline type="button"
       = link_to 'English', locale: :en
       - unless current_page?(locale: :en)
     div style=("padding-left: 10px;")

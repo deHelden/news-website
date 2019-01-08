@@ -28,7 +28,7 @@ ActiveAdmin.register Post do
     link_to 'Publish', publish_admin_post_path(post), method: :put if post.may_to_published?
   end
   action_item :unpublish, only: :show do
-    link_to 'Publish', unpublish_admin_post_path(post), method: :put if post.may_to_unpublished?
+    link_to 'Unpublish', unpublish_admin_post_path(post), method: :put if post.may_to_unpublished?
   end
   action_item :archive, only: :show do
     link_to 'Archive', archive_admin_post_path(post), method: :put if post.may_to_archive?
@@ -64,5 +64,4 @@ ActiveAdmin.register Post do
     post.to_archive!
     redirect_to admin_post_path(post)
   end
-
 end

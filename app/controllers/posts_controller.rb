@@ -10,6 +10,10 @@ class PostsController < ApplicationController
     @categories = Category.all
     @visibilities = Visibility.all
     @visibility_hidden = Visibility.last
+    respond_to do |format|
+      format.html
+      format.rss
+    end
   end
 
   # GET /posts/1
@@ -62,28 +66,12 @@ class PostsController < ApplicationController
     end
   end
 
-  def to_active
-    @post.to_active!
-  end
-
-  def to_inactive
-    @post.to_inactive!
-  end
-
-  def to_published
-    @post.to_published!
-  end
-
-  def to_unpublished
-    @post.to_unpublished!
-  end
-
-  def to_archive
-    @post.to_archive!
-  end
-
-  def to_rejected
-    @post.to_rejected!
+  def feed
+    @posts = Post.all.order("published_date DESC")
+    @categories = Category.all
+    @visibilities = Visibility.all
+    @visibility_hidden = Visibility.last
+      render action: :index
   end
 
   private
