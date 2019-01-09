@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.all.order("published_date DESC")
+    @posts = Post.search(params[:search]).order("published_date DESC")
     @categories = Category.all
     @visibilities = Visibility.all
     @visibility_hidden = Visibility.last

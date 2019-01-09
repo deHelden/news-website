@@ -2,23 +2,28 @@ nav.navbar.navbar-light.bg-light
   a.navbar-brand href="/"  Our Logo
   form.form-inline
     - unless user_signed_in?
-      button.btn.btn-outline type="button"
+      button.btn.btn-outline-primary 
         = link_to 'Sign_up', new_user_session_path
-      div style=("padding-left: 10px;")
-      button.btn.btn-outline type="button"
+      / div style=("padding-left: 10px;")
+      button.btn.btn-outline-primary 
         = link_to 'Sign_in', new_user_session_path
     - else
-      button.btn.btn-outline type="button"
+      button.btn.btn-outline-primary 
         = link_to 'Sign_out', destroy_user_session_path, :method => :delete
 
-    div style=("padding-left: 10px;")
-    button.btn.btn-outline type="button"
+
+    / div style=("padding-left: 10px;")
+    button.btn.btn-outline-success
       = link_to 'Canal RSS', '/posts/feed.rss'
-    div style=("padding-left: 10px;")
-    button.btn.btn-outline type="button"
+    / div style=("padding-left: 10px;")
+    button.btn.btn-outline-success
       = link_to 'English', locale: :en
       - unless current_page?(locale: :en)
-    div style=("padding-left: 10px;")
-    button.btn.btn-outline type="button"
+    / div style=("padding-left: 10px;")
+    button.btn.btn-outline-success type="button"
       = link_to 'Русский', locale: :ru
       - unless current_page?(locale: :ru)
+    .form-inline.my-2.my-lg-0
+      = form_tag posts_path, method: 'get' do
+        = text_field_tag  :search, params[:search], class: 'form-control mr-sm-2'
+        = submit_tag "Search", class:'btn btn-outline-success my-2 my-sm-0'

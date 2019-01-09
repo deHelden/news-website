@@ -62,4 +62,16 @@ class Post < ApplicationRecord
       transitions from: [:published, :active, :inactive], to: :archived
     end
   end
+
+  def self.search(search)
+    if search
+      attributes = ["title", "description", "content"]
+      queries = attributes.map { |attr| "(#{attr} LIKE '%#{search}%')" }
+      built_query = queries.join(" OR ")
+      where(built_query)
+    #  where(["title LIKE ?", "%#{search}%"])
+    else
+      all
+    end
+  end
 end
