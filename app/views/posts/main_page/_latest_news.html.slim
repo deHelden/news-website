@@ -3,7 +3,7 @@ table.table.table-light.table-striped
   thead
     = render 'posts/main_page/table_head', post: @post
   tbody
-    - @posts.published.each do |post|
-      - if post.published_date.to_date == DateTime.now.to_date
+    - @posts.each do |post|
+      - if post.published_date.present? && post.published_date.today?
         - unless post.visibility_id == @visibilities.last.id
           = render 'posts/main_page/table_body', post: post

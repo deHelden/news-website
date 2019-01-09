@@ -6,13 +6,18 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.search(params[:search]).order("published_date DESC")
     @categories = Category.all
     @visibilities = Visibility.all
     @visibility_hidden = Visibility.last
     respond_to do |format|
       format.html
       format.rss
+    end
+    search = params[:term].present? ? params[:term] : nil
+    @posts = if search
+      Post.search(search)
+    else
+      Post.all
     end
   end
 

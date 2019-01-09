@@ -18,7 +18,9 @@
 #
 
 class Post < ApplicationRecord
+  include Elasticsearch::Model
   include AASM
+  searchkick word_middle: [:title, :description, :content]
   belongs_to :user
   belongs_to :visibility
   belongs_to :category
@@ -63,15 +65,22 @@ class Post < ApplicationRecord
     end
   end
 
-  def self.search(search)
-    if search
-      attributes = ["title", "description", "content"]
-      queries = attributes.map { |attr| "(#{attr} LIKE '%#{search}%')" }
-      built_query = queries.join(" OR ")
-      where(built_query)
-    #  where(["title LIKE ?", "%#{search}%"])
-    else
-      all
-    end
+  def search_data
+    {
+      title: title,
+      description: description,
+      content: content,
+      status: status
+    }
+  end
+  # Custom callbacks for elastic
+  after_commit on: [:create] do
+    __elasticsearch__.index_document
+  end
+  after_commit on: [:update] do
+    __elasticsearch__.index_document
+  end
+  after_commit on: [:destroy] do
+    __elasticsearch__.delete_document ignore: 404
   end
 end
