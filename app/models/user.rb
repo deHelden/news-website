@@ -13,13 +13,17 @@
 #  admin                  :boolean          default(FALSE), not null
 #  publisher              :boolean          default(FALSE), not null
 #  correspondent          :boolean          default(FALSE), not null
+#  image_file_name        :string
+#  image_content_type     :string
+#  image_file_size        :integer
+#  image_updated_at       :datetime
 #
 
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, 
+  devise :database_authenticatable,
          :recoverable, :rememberable, :validatable
   has_many :posts
-  has_many :comments       
+  has_many :comments
 end

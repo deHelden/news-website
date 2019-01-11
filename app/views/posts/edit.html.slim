@@ -1,7 +1,7 @@
 h1
   | Editing Post
-  = render 'form', post: @post
-  |
+= render 'form', post: @post
+|
 = link_to t('action.show'), @post
 |  |
 = link_to t('action.back'), posts_path

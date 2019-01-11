@@ -1,29 +1,43 @@
-nav.navbar.navbar-light.bg-light
-  a.navbar-brand href="/"  Our Logo
-  form.form-inline
-    - unless user_signed_in?
-      button.btn.btn-outline-primary role="button"
-        = link_to 'Sign_up', new_user_session_path
-      / div style=("padding-left: 10px;")
-      button.btn.btn-outline-primary role="button"
-        = link_to 'Sign_in', new_user_session_path
-    - else
-      button.btn.btn-outline-primary role="button"
-        = link_to 'Sign_out', destroy_user_session_path, :method => :delete
+header#header
+      #nav
+        #nav-fixed
+          .container
+            .nav-logo
+              a.logo[href="/"]
+                = image_tag("")
+            ul.nav-menu.nav.navbar-nav
+              - unless user_signed_in?
+                li.cat-1
+                  = link_to 'Sign_up', new_user_session_path
+                li.cat-1
+                  = link_to 'Sign_in', new_user_session_path
+              - else
+                li.cat-1
+                  = link_to 'Sign_out', destroy_user_session_path, :method => :delete
 
+              li.cat-2
+                = link_to 'Canal RSS', '/posts/feed.rss'
+              li.cat-3
+                = link_to 'English', locale: :en
+                - unless current_page?(locale: :en)
+              li.cat-4
+                = link_to 'Русский', locale: :ru
+                - unless current_page?(locale: :ru)
 
-    / div style=("padding-left: 10px;")
-    button.btn.btn-outline-success role="button"
-      = link_to 'Canal RSS', '/posts/feed.rss'
-    / div style=("padding-left: 10px;")
-    button.btn.btn-outline-success role="button"
-      = link_to 'English', locale: :en
-      - unless current_page?(locale: :en)
-    / div style=("padding-left: 10px;")
-    button.btn.btn-outline-success role="button"
-      = link_to 'Русский', locale: :ru
-      - unless current_page?(locale: :ru)
-    .form-inline.my-2.my-lg-0
-      = form_tag posts_path, method: 'get' do
-        = text_field_tag  :term, params[:term], class: 'form-control mr-sm-2'
-        = submit_tag "Search", class:'btn btn-outline-success my-2 my-sm-0'
+            .nav-btns
+              / button.aside-btn
+              /   i.fas.fa-bars
+              / button.search-btn
+              /   i.fas.fa-search
+              .form-inline.my-2.my-lg-0
+                = form_tag posts_path, method: 'get' do
+                  .form-group
+                    = text_field_tag  :term, params[:term], class: 'form-control'
+                  .form-group
+                    = submit_tag "Search", class:'btn'
+                / input.search-input[type="text" name="search" placeholder="Enter Your Search ..."]
+              / button.search-close
+              /   i.fas.fa-times
+                = form_tag posts_path, method: 'get' do
+                  = text_field_tag  :term, params[:term], class: 'search-input'
+                  = submit_tag "Search", class:'btn btn-outline-success my-2 my-sm-0'

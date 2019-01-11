@@ -1,7 +1,35 @@
-h1
-  =t 'posts'
-table.table.table-light.table-striped
-  = render 'posts/main_page/table_head', post: @post
-  tbody
-    - @posts.each do |post|
-      = render 'posts/main_page/table_body', post: post
+.row
+  .col-md-8
+    .row
+      .col-md-12
+        .section-title
+          h2
+            =t 'posts'
+        - post = @posts.last
+      .col-md-12
+        .post.post-thumb
+          = link_to(image_tag(post.image.url), post, class:'post-img')
+          .post-body
+            .post-meta
+              a.post-category class="cat-#{post.category_id}"
+                = post.category.name
+              span.post-date
+                = post.published_date.to_s(:long)
+            h3.post-title
+              = link_to "#{post.title}", post
+      - @posts.drop(1).first(6).each_slice(2) do |sliced|
+        - sliced.each do |post|
+          .col-md-6
+            .post
+              = link_to(image_tag(post.image.url), post, class:'post-img')
+              .post-body
+                .post-meta
+                  a.post-category class="cat-#{post.category_id}"
+                    = post.category.name
+                  span.post-date
+                    = post.published_date.to_s(:long)
+                h3.post-title
+                  = link_to "#{post.title}", post
+        .clearfix.visible-md.visible-lg
+  = render '/posts/widget'
+  

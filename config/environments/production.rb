@@ -1,8 +1,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.exceptions_app = self.routes
+  config.exceptions_app = routes
 
-  #Becauze active Admin overrides styles it's separated
+  # Becauze active Admin overrides styles it's separated
   config.assets.precompile += ['active_admin.css']
 
   # Code is not reloaded between requests.

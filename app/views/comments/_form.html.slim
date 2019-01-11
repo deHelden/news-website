@@ -1,8 +1,13 @@
-= form_with(model: [ @post, @post.comments.build ], local: true) do |form|
-  .form-group
-    = form.hidden_field :user_id, value: current_user.id
-  .form-group
-    = form.label :body
-    = form.text_area :body, required: true, class: 'form-control'
-  .form-group
-    = form.submit 'Send comment', class: 'btn btn-success'
+.section-row
+    .section-title
+  	    h2 Leave a reply
+	= form_with(model: [ @post, @post.comments.build ], html:{class:'post-reply'}, local: true) do |form|
+	    .row
+            .col-md-12
+       			.form-group
+   					= form.hidden_field :user_id, value: current_user.id
+			.col-md-12
+				.form-group
+				    = form.label :body
+				    = form.text_area :body, required: true, class:'input'
+		   		= form.submit 'Send comment', class: 'primary-button'

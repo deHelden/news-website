@@ -5,32 +5,32 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Category.create([{name: 'Sport'},{name: 'Business'},{name: 'Travell'}])
+Category.create([{ name: 'Sport' }, { name: 'Business' }, { name: 'Travell' }])
 User.create!(
   [
     {
-      email: "admin@seed",
+      email: 'admin@seed',
       admin: true,
       password: 'qwaszx',
       password_confirmation: 'qwaszx'
     },
     {
-      email: "publisher@seed",
+      email: 'publisher@seed',
       publisher: true,
       password: 'qwaszx',
       password_confirmation: 'qwaszx'
     },
     {
-      email: "correspondent@seed",
+      email: 'correspondent@seed',
       correspondent: true,
       password: 'qwaszx',
       password_confirmation: 'qwaszx'
     },
     {
-      email: "registred@seed",
+      email: 'registred@seed',
       password: 'qwaszx',
       password_confirmation: 'qwaszx'
     }
   ]
 )
-Visibility.create([{name: 'All'}, {name: 'Registred'}, {name: 'Title&Description'}, {name: 'Title'},{name: 'Hidden'}])
+Visibility.create([{ name: 'All' }, { name: 'Registred' }, { name: 'Title&Description' }, { name: 'Title' }, { name: 'Hidden' }])

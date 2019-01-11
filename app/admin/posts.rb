@@ -1,5 +1,5 @@
 ActiveAdmin.register Post do
-  self.send(:include, Kaminari::ConfigurationMethods)
+  send(:include, Kaminari::ConfigurationMethods)
 
   def self.page(num = nil)
     limit(default_per_page).offset(default_per_page * ((num = num.to_i - 1) < 0 ? 0 : num)).extending do
