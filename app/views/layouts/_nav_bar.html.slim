@@ -3,12 +3,12 @@ header#header
         #nav-fixed
           .container
             .nav-logo
-              a.logo[href="/"]
-                = image_tag("")
+              = link_to root_path, class:'logo' do
+                'News
             ul.nav-menu.nav.navbar-nav
               - unless user_signed_in?
                 li.cat-1
-                  = link_to 'Sign_up', new_user_session_path
+                  = link_to 'Sign_up', new_user_registration_path
                 li.cat-1
                   = link_to 'Sign_in', new_user_session_path
               - else
@@ -27,17 +27,10 @@ header#header
             .nav-btns
               / button.aside-btn
               /   i.fas.fa-bars
-              / button.search-btn
-              /   i.fas.fa-search
-              .form-inline.my-2.my-lg-0
-                = form_tag posts_path, method: 'get' do
-                  .form-group
-                    = text_field_tag  :term, params[:term], class: 'form-control'
-                  .form-group
-                    = submit_tag "Search", class:'btn'
-                / input.search-input[type="text" name="search" placeholder="Enter Your Search ..."]
-              / button.search-close
-              /   i.fas.fa-times
-                = form_tag posts_path, method: 'get' do
-                  = text_field_tag  :term, params[:term], class: 'search-input'
-                  = submit_tag "Search", class:'btn btn-outline-success my-2 my-sm-0'
+              button.search-btn
+                i.fas.fa-search
+              = form_tag posts_path, class:'search-form', method: 'get', role: 'search' do
+                = text_field_tag  :term, params[:term], id:'posts_search', autocomplete: :off, class: 'search-input', placeholder:'Enter Your Search ...'
+                / = submit_tag nil, class:'fas fa-search'
+                button.search-close
+                  i.fas.fa-times

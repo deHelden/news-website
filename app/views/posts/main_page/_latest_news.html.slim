@@ -1,7 +1,8 @@
 .row
   .col-md-12
     .section-title
-      h2 Recent Posts
+      h2
+        =t 'widget.latest'
   - @posts.first(6).each_slice(4) do |sliced|
     - sliced.each do |post|
       - if post.published_date.today?

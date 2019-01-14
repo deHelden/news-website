@@ -1,11 +1,14 @@
 - if ((user_signed_in?))
   - if can? :create, Post
     = link_to t('action.create'), new_post_path
+- if @posts.any?
+  -if @search
+    = render 'posts/main_page/search_form', post: @post
+  -else
+    = render 'posts/main_page/latest_news', post: @post
 
-  = render 'posts/main_page/latest_news', post: @post
+    = render 'posts/main_page/all_news', post: @post
 
-  = render 'posts/main_page/all_news', post: @post
-
-  = render 'posts/main_page/important_news', post: @post
-
-  = render 'posts/main_page/archived_news', post: @post
+    = render 'posts/main_page/important_news', post: @post
+    -if @archived_news.any?
+      = render 'posts/main_page/archived_news', post: @post

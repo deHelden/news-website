@@ -1,15 +1,10 @@
-.post-comments
-  /! comment
-  .media
-	/ .media-left
-	/ 	img.media-object alt="" src="./img/avatar.png" /
-  	.media-body
-        .media-heading
-        	h4
-        		= comment.user.email
-        	span.time 
-        	 	= comment.created_at.to_s(:long)
-        	/ a.reply href="#"  Reply
-        p
-        	= comment.body
-
+.media
+  .media-body
+    .media-heading
+    	h4
+    		= comment.user.email
+    	span.time
+    	 	= comment.created_at.to_s(:long)
+    	/ a.reply href="#"  Reply
+    p
+    	= comment.body

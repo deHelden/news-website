@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[index show]
+  skip_before_action :verify_authenticity_token
   load_and_authorize_resource
   impressionist actions: [:show]
 
@@ -18,9 +19,10 @@ class PostsController < ApplicationController
       format.html
       format.rss
     end
-    search = params[:term].present? ? params[:term] : nil
-    @posts = if search
-               Post.where(status: 'published', visibility_id: @visibilities.first.id).search(search)
+    @search = params[:term].present? ? params[:term] : nil
+    @posts = if @search
+               results = Post.where(status: 'published', visibility_id: @visibilities.first.id).search(@search)
+               Post.where(id: results.map(&:id))
              else
                Post.all.published.order('published_date DESC')
     end
@@ -46,10 +48,10 @@ class PostsController < ApplicationController
   # POST /posts
   def create
     @post = current_user.posts.build(post_params)
-    @post.category_id = params[:category_id]
+    # @post.category_id = params[:category_id]
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: t('notice.create') }
+        format.html { redirect_to posts_path, notice: t('notice.create') }
       else
         format.html { render :new }
       end
@@ -84,6 +86,16 @@ class PostsController < ApplicationController
     @visibilities = Visibility.all
     @visibility_hidden = Visibility.last
     render action: :index
+  end
+
+  def autocomplete
+    render json: Post.search(params[:query], {
+      fields: ["title^5", "description"],
+      match: :word_start,
+      limit: 10,
+      load: false,
+      misspellings: {below: 5}
+    }).map(&:title)
   end
 
   private

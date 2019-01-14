@@ -12,11 +12,16 @@ ru:
         publisheddate: Дата публикации
         createdat: Дата создания
         comments: Комментарии
+        author: Автор
+        published: Опубликовано
+        views: Просмотров
       comment:
-        addcomment: Добавь комментарии
-        commenter: Комментатор
-        body: Комментарий
-        creationdate: Дата Создания
+          register_note: Только зарегестрированные Джедаи используют силу комментариев
+          comment_count: комментариев
+          addcomment: Добавь комментарии
+          commenter: Комментатор
+          body: Комментарий
+          creationdate: Дата Создания
     model:
       email: Email@
       first_name: Имя
@@ -40,5 +45,12 @@ ru:
     edit: Редактировать
     destroy: Удалить
     back: Назад
-  posts: Статьи
-  greetings: Приветствуем!
+  widget:
+    posts: Статьи
+    most_read: Популярные новости
+    featured: Оцененные новости
+    categories: Категории
+    arhived: Архив
+    important: Горячие новости
+    latest: Последние новости
+    search: Результаты поиска

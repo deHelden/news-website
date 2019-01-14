@@ -1,4 +1,5 @@
 ActiveAdmin.register Post do
+  scope_to :current_user, unless: proc{ current_user.admin? || current_user.publisher? }
   send(:include, Kaminari::ConfigurationMethods)
 
   def self.page(num = nil)
@@ -8,12 +9,24 @@ ActiveAdmin.register Post do
     end
   end
 
+  index do
+    selectable_column
+    id_column
+    column :title
+    column :description
+    column :status
+    column :created_at
+    actions
+  end
+
+
   scope :all
+  scope :inactive
   scope :active
   scope :published
   scope :unpublished
   scope :archive
-  permit_params :title, :description, :content, :published_date
+  permit_params :title, :description, :content, :published_date, :user_id, :category_id, :visibility_id
 
   action_item :reject, only: :show do
     link_to 'Reject', reject_admin_post_path(post), method: :put if post.may_to_rejected?

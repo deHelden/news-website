@@ -2,20 +2,24 @@
 #
 # Table name: posts
 #
-#  id                :bigint(8)        not null, primary key
-#  title             :string           not null
-#  content           :string           not null
-#  description       :string           not null
-#  published_date    :datetime
-#  status            :string           not null
-#  importance        :boolean          default(FALSE), not null
-#  rating            :float
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  category_id       :bigint(8)
-#  user_id           :integer
-#  visibility_id     :bigint(8)
-#  impressions_count :integer          default(0)
+#  id                 :bigint(8)        not null, primary key
+#  title              :string           not null
+#  content            :string           not null
+#  description        :string           not null
+#  published_date     :datetime
+#  status             :string           not null
+#  importance         :boolean          default(FALSE), not null
+#  rating             :float
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  category_id        :bigint(8)
+#  user_id            :integer
+#  visibility_id      :bigint(8)
+#  impressions_count  :integer          default(0)
+#  image_file_name    :string
+#  image_content_type :string
+#  image_file_size    :integer
+#  image_updated_at   :datetime
 #
 
 class Post < ApplicationRecord
@@ -31,7 +35,6 @@ class Post < ApplicationRecord
   is_impressionable counter_cache: true
   validates :title, presence: true,
                     length: { minimum: 5 }
-  validates :visibility_id, presence: true
 
   scope :active, -> { where(status: 'active') }
   scope :published, -> { where(status: 'published') }

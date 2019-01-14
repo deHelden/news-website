@@ -2,7 +2,7 @@
   .aside-widget
     .section-title
       h2
-        | Most Read
+        =t 'widget.most_read'
     - @most_viewed.each do |post|
       .post.post-widget
         = link_to(image_tag(post.image.url), post, class:'post-img')
@@ -12,7 +12,7 @@
   .aside-widget
     .section-title
       h2
-        | Featured Posts
+        =t 'widget.featured'
     - @most_featured.each do |post|
       .post.post-thumb
         = link_to(image_tag(post.image.url), post, class:'post-img')
@@ -24,3 +24,15 @@
               = post.published_date.to_s(:long)
           h3.post-title
             = link_to "#{post.title}", post
+  .aside-widget
+    .section-title
+      h2
+        =t 'widget.categories'
+    .category-widget
+      ul
+        - @categories.each do |category|
+          li
+            = link_to category_path(category.id), method: 'get', class:"cat-#{category.id}" do
+              = category.name
+              span
+                = category.posts.count

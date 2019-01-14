@@ -4,7 +4,7 @@
       .col-md-12
         .section-title
           h2
-            =t 'posts'
+            =t 'widget.posts'
         - post = @posts.last
       .col-md-12
         .post.post-thumb
@@ -32,4 +32,3 @@
                   = link_to "#{post.title}", post
         .clearfix.visible-md.visible-lg
   = render '/posts/widget'
-  

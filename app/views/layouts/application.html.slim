@@ -4,15 +4,9 @@ html
     title
       | NewsWebsite
     = csrf_meta_tags
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag    'clients/application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'clients/application', 'data-turbolinks-track': 'reload'
     = auto_discovery_link_tag :rss, posts_path(:format => :rss)
-    = stylesheet_link_tag "bootstrap.min.css"
-    = stylesheet_link_tag "font-awesome.min.css"
-    = stylesheet_link_tag "style.css"
-    = javascript_include_tag "main.js"
-    = javascript_include_tag "bootstrap.min.js"
-    = javascript_include_tag "jquery.min.js"
     link[href="https://fonts.googleapis.com/css?family=Nunito+Sans:700%7CNunito:300,600" rel="stylesheet"]
     link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"
 

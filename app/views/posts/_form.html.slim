@@ -1,6 +1,5 @@
 .section-row
   .section-title
-    h2 Leave a reply
   = form_with(model: [ @post], html:{class:'post-reply'}, local: true) do |form|
     .row
       .col-md-4
@@ -21,7 +20,7 @@
       .col-md-3
         .form-group
           = form.label :category_id
-          = form.select :category_id, options_from_collection_for_select(Category.all, 'id', 'name', class: 'custom-select')
+          = form.select :category_id, options_from_collection_for_select(Category.all, 'id', 'name')
       .col-md-3
         .form-group
           = form.label :visibility

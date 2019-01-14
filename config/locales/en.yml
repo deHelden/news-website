@@ -1,34 +1,3 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
   activerecord:
     attributes:
@@ -43,15 +12,21 @@ en:
         publisheddate: Published
         createdat: Created
         comments: Comments
+        author: Author
+        published: Published
+        views: Viewed
     model:
         email: Email@
         first_name: First@Name
         last_name: Last@Name
     comment:
-      addcomment: Add Comment
-      commenter: Commenter
-      body: Comment
-      creationdate: Creation date
+        register_note: Only registred Jedi can use the force of comment
+        comment_count: comments
+        addcomment: Add Comment
+        commenter: Commenter
+        body: Comment
+        creationdate: Creation date
+
   notice:
     create: Post succesfully created!
     update: Post succesfully updated.
@@ -71,5 +46,12 @@ en:
     edit: Edit
     destroy: Destroy
     back: Back
-  greetings: Hello guest!
-  posts: Posts
+  widget:
+    posts: Posts
+    most_read: Most Read
+    featured: Featured
+    categories: Categories
+    arhived: Arhived
+    important: Important
+    latest: Latest news
+    search: Search results
