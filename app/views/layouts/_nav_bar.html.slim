@@ -1,21 +1,36 @@
-nav.navbar.navbar-light.bg-light
-  a.navbar-brand href="/"  Our Logo
-  form.form-inline
-    - unless user_signed_in?
-      button.btn.btn-outline type="button"
-        = link_to 'Sign_up', new_user_session_path
-      div style=("padding-left: 10px;")
-      button.btn.btn-outline type="button"
-        = link_to 'Sign_in', new_user_session_path
-    - else
-      button.btn.btn-outline type="button"
-        = link_to 'Sign_out', destroy_user_session_path, :method => :delete
+header#header
+      #nav
+        #nav-fixed
+          .container
+            .nav-logo
+              = link_to root_path, class:'logo' do
+                'News
+            ul.nav-menu.nav.navbar-nav
+              - unless user_signed_in?
+                li.cat-1
+                  = link_to 'Sign_up', new_user_registration_path
+                li.cat-1
+                  = link_to 'Sign_in', new_user_session_path
+              - else
+                li.cat-1
+                  = link_to 'Sign_out', destroy_user_session_path, :method => :delete
 
-    div style=("padding-left: 10px;")
-    button.btn.btn-outline type="button"
-      = link_to 'English', locale: :en
-      - unless current_page?(locale: :en)
-    div style=("padding-left: 10px;")
-    button.btn.btn-outline type="button"
-      = link_to 'Русский', locale: :ru
-      - unless current_page?(locale: :ru)
+              li.cat-2
+                = link_to 'RSS', '/posts/feed.rss'
+              li.cat-3
+                = link_to 'English', locale: :en
+                - unless current_page?(locale: :en)
+              li.cat-4
+                = link_to 'Русский', locale: :ru
+                - unless current_page?(locale: :ru)
+
+            .nav-btns
+              / button.aside-btn
+              /   i.fas.fa-bars
+              button.search-btn
+                i.fas.fa-search
+              = form_tag posts_path, class:'search-form', method: 'get', role: 'search' do
+                = text_field_tag  :term, params[:term], id:'posts_search', autocomplete: :off, class: 'search-input', placeholder:'Enter Your Search ...'
+                / = submit_tag nil, class:'fas fa-search'
+                button.search-close
+                  i.fas.fa-times

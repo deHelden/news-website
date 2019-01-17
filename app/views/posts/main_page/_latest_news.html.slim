@@ -1,9 +1,21 @@
-h3 Latest
-table.table.table-light.table-striped
-  thead
-    = render 'posts/main_page/table_head', post: @post
-  tbody
-    - @posts.published.each do |post|
-      - if post.published_date.to_date == DateTime.now.to_date
+.row
+  .col-md-12
+    .section-title
+      h2
+        =t 'widget.latest'
+  - @posts.first(6).each_slice(4) do |sliced|
+    - sliced.each do |post|
+      - if post.published_date.today?
         - unless post.visibility_id == @visibilities.last.id
-          = render 'posts/main_page/table_body', post: post
+          .col-md-4
+            .post
+              = link_to(image_tag(post.image.url), post, class:'post-img')
+              .post-body
+                .post-meta
+                  a.post-category class="cat-#{post.category_id}"
+                    = post.category.name
+                  span.post-date
+                    = post.published_date.to_s(:long)
+                h3.post-title
+                  = link_to "#{post.title}", post
+    .clearfix.visible-md.visible-lg

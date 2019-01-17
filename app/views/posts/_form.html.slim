@@ -1,39 +1,46 @@
-
-div.content.justify-content-md-center
-  = form_with(model: post, local: true) do |form|
-    div.form-group
-      - if post.errors.any?
-        #error_explanation
-          h2
-            = pluralize(post.errors.count, "error")
-            |  prohibited this post from being saved:
-          ul
-            - post.errors.full_messages.each do |message|
-              li
-                = message
-    .form-group
-      = form.label :title
-      = form.text_field :title, id: :post_title, class: 'form-control'
-    .form-group
-      = form.label :category_id
-      = form.select :category_id, options_from_collection_for_select(Category.all, 'id', 'name', class: 'custom-select custom-select-sm')
-    .form-group
-      = form.label :content
-      = form.text_area :content, id: :post_content, class: 'form-control'
-    .form-group
-      = form.label :description
-      = form.text_area :description, id: :post_description, class: 'form-control'
-    .form-group
-      = form.label :visibility
-      - if @responsiblie
-        = form.select :visibility_id, options_from_collection_for_select(Visibility.all, 'id', 'name')
-      - else
-        = form.select :visibility_id, options_from_collection_for_select(Visibility.where(name: "Hidden"), 'id', 'name')
-    .form-group
-      = form.label :importance
-      = form.check_box :importance, id: :post_importance
-    .form-group
-      = form.label :rating
-      = form.text_field :rating, id: :post_rating, class: 'form-control'
-    .form-group
-      = form.submit 'Update post', class: 'btn btn-success'
+.section-row
+  .section-title
+  = form_with(model: [ @post], html:{class:'post-reply'}, local: true) do |form|
+    .row
+      .col-md-4
+        .form-group
+          - if post.errors.any?
+            #error_explanation
+              h2
+                = pluralize(post.errors.count, "error")
+                |  prohibited this post from being saved:
+              ul
+                - post.errors.full_messages.each do |message|
+                  li
+                    = message
+      .col-md-12
+        .form-group
+          = form.label :title
+          = form.text_field :title, class:'input'
+      .col-md-3
+        .form-group
+          = form.label :category_id
+          = form.select :category_id, options_from_collection_for_select(Category.all, 'id', 'name')
+      .col-md-3
+        .form-group
+          = form.label :visibility
+          - if @responsiblie
+              = form.select :visibility_id, options_from_collection_for_select(Visibility.all, 'id', 'name')
+          - else
+              = form.select :visibility_id, options_from_collection_for_select(Visibility.where(name: "Hidden"), 'id', 'name')
+      .col-md-3
+        .form-group
+          = form.label :importance
+          = form.check_box :importance
+      .col-md-3
+        .form-group
+          = form.file_field :image
+      .col-md-12
+        .form-group
+          = form.label :description
+          = form.text_area :description, class:'input'
+      .col-md-12
+        .form-group
+          = form.label :content
+          = form.text_area :content, class:'input'
+        = form.submit 'Done', class:'primary-button'

@@ -1,0 +1,34 @@
+.section
+      .container
+        .row
+          .col-md-12
+            .section-title
+              h2
+                =t 'widget.arhived'
+          - @archived_news.each do |post|
+            .col-md-8
+              .post.post-row
+                = link_to(image_tag(post.image.url), post, class:'post-img')
+                .post-body
+                  .post-meta
+                    a.post-category class="cat-#{post.category_id}"
+                      = post.category.name
+                    span.post-date
+                      = post.published_date.to_s(:long)
+                  h3.post-title
+                    = link_to "#{post.title}", post
+                  p
+                    = post.description
+            .col-md-4
+              .aside-widget
+                .section-title
+                  h2
+                    =t 'widget.categories'
+                .category-widget
+                  ul
+                    - @categories.each do |category|
+                      li
+                        = link_to category_path(category.id), method: 'get', class:"cat-#{category.id}" do
+                          = category.name
+                          span
+                            = category.posts.count

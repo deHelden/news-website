@@ -1,8 +1,10 @@
-div.container
-  div.card
-    div.card-body
-      p
-        = comment.body
-    div.card-footer.d-flex.justify-content-end
-      |By :
-      = comment.user.email
+.media
+  .media-body
+    .media-heading
+    	h4
+    		= comment.user.email
+    	span.time
+    	 	= comment.created_at.to_s(:long)
+    	/ a.reply href="#"  Reply
+    p
+    	= comment.body

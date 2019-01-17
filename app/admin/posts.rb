@@ -1,5 +1,6 @@
 ActiveAdmin.register Post do
-  self.send(:include, Kaminari::ConfigurationMethods)
+  scope_to :current_user, unless: proc{ current_user.admin? || current_user.publisher? }
+  send(:include, Kaminari::ConfigurationMethods)
 
   def self.page(num = nil)
     limit(default_per_page).offset(default_per_page * ((num = num.to_i - 1) < 0 ? 0 : num)).extending do
@@ -8,12 +9,24 @@ ActiveAdmin.register Post do
     end
   end
 
+  index do
+    selectable_column
+    id_column
+    column :title
+    column :description
+    column :status
+    column :created_at
+    actions
+  end
+
+
   scope :all
+  scope :inactive
   scope :active
   scope :published
   scope :unpublished
   scope :archive
-  permit_params :title, :description, :content, :published_date
+  permit_params :title, :description, :content, :published_date, :user_id, :category_id, :visibility_id
 
   action_item :reject, only: :show do
     link_to 'Reject', reject_admin_post_path(post), method: :put if post.may_to_rejected?
@@ -28,7 +41,7 @@ ActiveAdmin.register Post do
     link_to 'Publish', publish_admin_post_path(post), method: :put if post.may_to_published?
   end
   action_item :unpublish, only: :show do
-    link_to 'Publish', unpublish_admin_post_path(post), method: :put if post.may_to_unpublished?
+    link_to 'Unpublish', unpublish_admin_post_path(post), method: :put if post.may_to_unpublished?
   end
   action_item :archive, only: :show do
     link_to 'Archive', archive_admin_post_path(post), method: :put if post.may_to_archive?
@@ -64,5 +77,4 @@ ActiveAdmin.register Post do
     post.to_archive!
     redirect_to admin_post_path(post)
   end
-
 end

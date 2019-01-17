@@ -1,0 +1,26 @@
+.col-md-4
+  .aside-widget
+    .section-title
+      h2
+        =t 'widget.most_read'
+    - @most_viewed.each do |post|
+      .post.post-widget
+        = link_to(image_tag(post.image.url), post, class:'post-img')
+        .post-body
+          h3.post-title
+            = link_to "#{post.title}", post
+  .aside-widget
+    .section-title
+      h2
+        =t 'widget.featured'
+    - @most_featured.each do |post|
+      .post.post-thumb
+        = link_to(image_tag(post.image.url), post, class:'post-img')
+        .post-body
+          .post-meta
+            a.post-category class="cat-#{post.category_id}"
+              = post.category.name
+            span.post-date
+              = post.published_date.to_s(:long)
+          h3.post-title
+            = link_to "#{post.title}", post

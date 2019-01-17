@@ -1,0 +1,52 @@
+.section
+  /! container
+  .container
+    /! row
+    .row
+      .col-md-8
+        .row
+          /! post
+          .col-md-12
+            .section-title
+                  h2
+                    = @category.name
+            .post.post-thumb
+              - post = @latest_post
+              = link_to post, class:'post-img' do
+                = image_tag(post.image.url)
+              .post-body
+                .post-meta
+                  a.post-category class="cat-#{@category.id}"
+                    = @category.name
+                  span.post-date 
+                    = post.published_date.to_s(:long)
+                h3.post-title
+                  = link_to "#{post.title}", post
+          /! /post
+          /! post
+          - @category_posts.drop(1).take(2).each do |post|
+            .col-md-6
+              .post
+                = link_to(image_tag(post.image.url), post, class:'post-img')
+                .post-body
+                  .post-meta
+                    a.post-category class="cat-#{@category.id}"
+                      = @category.name
+                    span.post-date 
+                      = post.published_date.to_s(:long)
+                  h3.post-title
+                   = link_to "#{post.title}", post
+          .clearfix.visible-md.visible-lg
+          - @category_posts.drop(3).each do |post|
+            .col-md-12
+              .post.post-row
+                = link_to(image_tag(post.image.url), post, class:'post-img')
+                .post-body
+                  .post-meta
+                    a.post-category class="cat-#{post.category_id}"
+                      = post.category.name
+                    span.post-date 
+                      = post.published_date.to_s(:long)
+                  h3.post-title
+                    = link_to "#{post.title}", post
+      = render 'posts/widget' 

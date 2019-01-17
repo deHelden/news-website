@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
   before_action :set_responsible_users
+
   private
 
   def set_locale
@@ -18,6 +19,7 @@ class ApplicationController < ActionController::Base
   def default_url_options(options = {})
     { locale: I18n.locale }.merge options
   end
+
   # Alternative additing to Ability
   def set_responsible_users
     if user_signed_in?
@@ -29,7 +31,7 @@ class ApplicationController < ActionController::Base
   def authenticate_admin_user!
     raise SecurityError unless current_user.try(:admin?)
   end
-  rescue_from SecurityError do |exception|
+  rescue_from SecurityError do |_exception|
     redirect_to root_url
   end
   def after_sign_in_path_for(user)

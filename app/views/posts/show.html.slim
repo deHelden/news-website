@@ -1,38 +1,58 @@
-div.container
-  div.jumbotron
-    h1
-      = @post.title
-    span.badge.badge-primary
-      | Last update :
-      = @post.created_at.strftime("%b %d, %Y")
-  div.container
-    div.card
-      div.card-body
-        p
-          = simple_format(@post.content)
-      div.card-footer.d-flex.justify-content-end
-        span.badge.badge-primary.col-md-2
-          | Author  :
-          = @post.user.email
-        span.badge.badge-secondary.col-md-1
-          | Viewed :
-          = @post.impressionist_count(:filter=>:ip_address)
-        span.badge.badge-secondary.col-md-1
-          = Post.human_attribute_name(:rating)
-          | :
-          = @post.rating
-        span.badge.badge-secondary.col-md-3
-          | Published :
-          = @post.published_date
-  = render @post.comments
-  - if user_signed_in?
-    div.container
-      div.card
-        div.card-body
-          = render 'comments/form'
-  |
-  = link_to t('action.back'), posts_path
-  - if user_signed_in?
-    = link_to t('action.edit'), edit_post_path(@post)
-    |
-
+#post-header.page-header
+  .background-img  style=("background-image: url(#{@post.image.url})")
+  .container
+    .row
+      .col-md-10
+        .post-meta
+          a.post-category.cat-2 href="category.html"  JavaScript
+          span.post-date March 27, 2018
+        h1
+          = @post.title
+.section
+  .container
+      .row
+          .col-md-8
+            .section-row.sticky-container
+              .main-post
+                = simple_format(@post.content)
+                span.badge.badge-primary.col-md-3
+                  = Post.human_attribute_name(:author)
+                  | :
+                  '
+                  = @post.user.email
+                span.badge.badge-secondary.col-md-2
+                  = Post.human_attribute_name(:views)
+                  | :
+                  '
+                  = @post.impressionist_count(:filter=>:ip_address)
+                span.badge.badge-secondary.col-md-2
+                  = Post.human_attribute_name(:rating)
+                  | :
+                  '
+                  = @post.rating
+                - if @post.published?
+                  span.badge.badge-secondary.col-md-4
+                    = Post.human_attribute_name(:publisheddate)
+                    | :
+                    '
+                    = @post.published_date.to_s(:long)
+            .section-row
+              .section-title
+                h2
+                  = @post.comments.count
+                  | :
+                  '
+                  = Comment.human_attribute_name(:comment_count)
+              .post-comments
+                = render @post.comments
+            - if user_signed_in?
+              = render 'comments/form'
+            -else
+              p
+                = Comment.human_attribute_name(:register_note)
+              = link_to t('action.back'), posts_path
+            - if user_signed_in?
+              -if can? :manage, @post
+                = link_to t('action.edit'), edit_post_path(@post)
+                '
+                = link_to t('action.delete'), post_path(@post), method: :delete
