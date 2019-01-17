@@ -16,16 +16,12 @@ ru:
         published: Опубликовано
         views: Просмотров
       comment:
-          register_note: Только зарегестрированные Джедаи используют силу комментариев
+          register_note: Только зарегистрированные Джедаи используют силу комментариев
           comment_count: комментариев
           addcomment: Добавь комментарии
           commenter: Комментатор
           body: Комментарий
           creationdate: Дата Создания
-    model:
-      email: Email@
-      first_name: Имя
-      last_name: Фамилия
   notice:
     create: Статья успешно создана!
     update: Статья успешно изменена.
@@ -54,3 +50,4 @@ ru:
     important: Горячие новости
     latest: Последние новости
     search: Результаты поиска
+    unpublished: Неопубликовано

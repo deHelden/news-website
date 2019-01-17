@@ -1,6 +1,4 @@
 .section-row
-    .section-title
-  	    h2 Leave a reply
 	= form_with(model: [ @post, @post.comments.build ], html:{class:'post-reply'}, local: true) do |form|
 	    .row
             .col-md-12

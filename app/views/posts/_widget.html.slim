@@ -24,15 +24,3 @@
               = post.published_date.to_s(:long)
           h3.post-title
             = link_to "#{post.title}", post
-  .aside-widget
-    .section-title
-      h2
-        =t 'widget.categories'
-    .category-widget
-      ul
-        - @categories.each do |category|
-          li
-            = link_to category_path(category.id), method: 'get', class:"cat-#{category.id}" do
-              = category.name
-              span
-                = category.posts.count

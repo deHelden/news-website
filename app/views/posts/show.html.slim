@@ -30,11 +30,12 @@
                   | :
                   '
                   = @post.rating
-                span.badge.badge-secondary.col-md-4
-                  = Post.human_attribute_name(:publisheddate)
-                  | :
-                  '
-                  = @post.published_date.to_s(:long)
+                - if @post.published?
+                  span.badge.badge-secondary.col-md-4
+                    = Post.human_attribute_name(:publisheddate)
+                    | :
+                    '
+                    = @post.published_date.to_s(:long)
             .section-row
               .section-title
                 h2
@@ -51,4 +52,7 @@
                 = Comment.human_attribute_name(:register_note)
               = link_to t('action.back'), posts_path
             - if user_signed_in?
-              = link_to t('action.edit'), edit_post_path(@post)
+              -if can? :manage, @post
+                = link_to t('action.edit'), edit_post_path(@post)
+                '
+                = link_to t('action.delete'), post_path(@post), method: :delete

@@ -9,6 +9,8 @@ class PostsController < ApplicationController
   def index
     posts_all_published = Post.published
     @categories = Category.all
+    @unpublished = Post.all.where(status: ["inactive", "active"])
+    @latest = Post.all.where(published_date: DateTime.now.to_date)
     @visibilities = Visibility.all
     @visibility_hidden = Visibility.last
     @most_viewed = posts_all_published.order('impressions_count DESC').take(4)

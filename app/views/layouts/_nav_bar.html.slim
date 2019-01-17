@@ -16,7 +16,7 @@ header#header
                   = link_to 'Sign_out', destroy_user_session_path, :method => :delete
 
               li.cat-2
-                = link_to 'Canal RSS', '/posts/feed.rss'
+                = link_to 'RSS', '/posts/feed.rss'
               li.cat-3
                 = link_to 'English', locale: :en
                 - unless current_page?(locale: :en)

@@ -31,4 +31,4 @@
                 h3.post-title
                   = link_to "#{post.title}", post
         .clearfix.visible-md.visible-lg
-  = render '/posts/widget'
+  = render '/posts/widget', categories: @categories
