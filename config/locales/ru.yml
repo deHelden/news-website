@@ -11,17 +11,20 @@ ru:
         rating: Оценка
         publisheddate: Дата публикации
         createdat: Дата создания
-        comments: Комментарии
         author: Автор
         published: Опубликовано
         views: Просмотров
       comment:
-          register_note: Только зарегистрированные Джедаи используют силу комментариев
-          comment_count: комментариев
-          addcomment: Добавь комментарии
-          commenter: Комментатор
-          body: Комментарий
-          creationdate: Дата Создания
+        comment_plural:
+          zero: Комментариев
+          one: Комментарий
+          few: Комментария
+          many: Комментариев
+        register_note: Только зарегистрированные Джедаи используют силу комментариев
+        addcomment: Добавь комментарии
+        commenter: Комментатор
+        body: Комментарий
+        creationdate: Дата Создания
   notice:
     create: Статья успешно создана!
     update: Статья успешно изменена.

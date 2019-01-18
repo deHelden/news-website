@@ -1067,7 +1067,7 @@
     var WWW = function() {
         "use strict";
         var defaultClassNames = {
-            wrapper: "twitter-typeahead",
+            wrapper: "search-form",
             input: "tt-input",
             hint: "tt-hint",
             menu: "tt-menu",
@@ -1115,8 +1115,8 @@
         function buildCss() {
             var css = {
                 wrapper: {
-                    position: "relative",
-                    display: "inline-block"
+                    // position: "relative",
+                    // display: "inline-block"
                 },
                 hint: {
                     position: "absolute",

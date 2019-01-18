@@ -31,18 +31,20 @@
                   '
                   = @post.rating
                 - if @post.published?
-                  span.badge.badge-secondary.col-md-4
+                  span.badge.badge-secondary.col-md-5
                     = Post.human_attribute_name(:publisheddate)
                     | :
                     '
-                    = @post.published_date.to_s(:long)
+                    = l(@post.published_date.to_date)
+            br
             .section-row
               .section-title
-                h2
+                h3
                   = @post.comments.count
+                  '
                   | :
                   '
-                  = Comment.human_attribute_name(:comment_count)
+                  = Comment.human_attribute_name('comment.comment_plural', :count => @post.comments.count)
               .post-comments
                 = render @post.comments
             - if user_signed_in?
@@ -55,4 +57,4 @@
               -if can? :manage, @post
                 = link_to t('action.edit'), edit_post_path(@post)
                 '
-                = link_to t('action.delete'), post_path(@post), method: :delete
+                = link_to t('action.destroy'), post_path(@post), method: :delete

@@ -32,8 +32,6 @@ xml.rss version: '2.0' do
           end
           xml.description '<p>' + description + '</p>'
         end
-      else
-        "<p> There are no posts yet :,(</p>"
       end
     end
   end

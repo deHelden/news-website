@@ -11,13 +11,16 @@ en:
         rating: Rating
         publisheddate: Published
         createdat: Created
-        comments: Comments
         author: Author
         published: Published
         views: Viewed
       comment:
+        comment_plural:
+          zero: Comments
+          one: Comment
+          few: Comments
+          many: Comments
         register_note: Only registred Jedi can use the force of comment
-        comment_count: comments
         addcomment: Add Comment
         commenter: Commenter
         body: Comment

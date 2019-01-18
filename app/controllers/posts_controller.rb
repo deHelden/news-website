@@ -2,7 +2,6 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[index show]
   skip_before_action :verify_authenticity_token
-  load_and_authorize_resource
   impressionist actions: [:show]
 
   # GET /posts
@@ -16,7 +15,6 @@ class PostsController < ApplicationController
     @most_viewed = posts_all_published.order('impressions_count DESC').take(4)
     @most_featured = posts_all_published.order('rating DESC').take(3)
     @important_news = posts_all_published.select(&:importance?).take(3)
-    @archived_news = Post.archived
     respond_to do |format|
       format.html
       format.rss
